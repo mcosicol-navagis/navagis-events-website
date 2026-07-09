@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const INTEREST_OPTIONS = [
   "Strategic Site Selection & Market Analytics",
@@ -31,7 +33,10 @@ export default function RegisterForm() {
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setInterestsOpen(false);
       }
     };
@@ -41,7 +46,7 @@ export default function RegisterForm() {
 
   const toggleInterest = (item: string) => {
     setInterests((prev) =>
-      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item],
     );
   };
 
@@ -60,7 +65,11 @@ export default function RegisterForm() {
       await fetch(scriptUrl, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ ...form, interests: interests.join(", "), wantsTour }),
+        body: JSON.stringify({
+          ...form,
+          interests: interests.join(", "),
+          wantsTour,
+        }),
       });
 
       setStatus("success");
@@ -76,7 +85,6 @@ export default function RegisterForm() {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
-
       {/* Success modal */}
       {status === "success" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -86,11 +94,17 @@ export default function RegisterForm() {
           />
           <div className="relative bg-white rounded-2xl shadow-xl p-10 max-w-sm w-full mx-4 text-center">
             <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
-              <Icon icon="mdi:check-circle" className="text-green-500 text-4xl" />
+              <Icon
+                icon="mdi:check-circle"
+                className="text-green-500 text-4xl"
+              />
             </div>
-            <h2 className="text-2xl font-bold text-slate-800 mb-2">You&apos;re registered!</h2>
+            <h2 className="text-2xl font-bold text-slate-800 mb-2">
+              You&apos;re registered!
+            </h2>
             <p className="text-slate-500 text-sm mb-6">
-              Thanks for signing up. We&apos;ll be in touch with event details soon.
+              Thanks for signing up. We&apos;ll be in touch with event details
+              soon.
             </p>
             <button
               onClick={() => setStatus("idle")}
@@ -103,9 +117,8 @@ export default function RegisterForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-5">
-
         {/* First + Last Name */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-1">
               First Name <span className="text-red-500">*</span>
@@ -187,15 +200,18 @@ export default function RegisterForm() {
         {/* Phone — optional */}
         <div>
           <label className="block text-sm font-semibold text-slate-700 mb-1">
-            Phone
+            Phone Number
           </label>
-          <input
-            type="tel"
-            name="phone"
-            placeholder="+1 (555) 000-0000"
+          <PhoneInput
+            international
+            countryCallingCodeEditable={false}
+            defaultCountry="US"
             value={form.phone}
-            onChange={handleChange}
-            className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 text-sm focus:border-blue-400 transition-colors"
+            onChange={(val) =>
+              setForm((prev) => ({ ...prev, phone: val ?? "" }))
+            }
+            placeholder="(555) 000-0000"
+            className="phone-input-wrapper w-full"
           />
         </div>
 
@@ -206,7 +222,9 @@ export default function RegisterForm() {
             onClick={() => setInterestsOpen((v) => !v)}
             className="w-full border border-blue-400 rounded-lg px-4 py-3 text-left text-sm bg-white flex items-center justify-between gap-2 transition-colors"
           >
-            <span className={`truncate ${interests.length === 0 ? "text-slate-400" : "text-slate-700"}`}>
+            <span
+              className={`truncate ${interests.length === 0 ? "text-slate-400" : "text-slate-700"}`}
+            >
               {interestsLabel}
             </span>
             <Icon
@@ -250,13 +268,16 @@ export default function RegisterForm() {
             aria-checked={wantsTour}
             onClick={() => setWantsTour((v) => !v)}
             className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
-              wantsTour ? "bg-blue-600" : "border-2 border-slate-300 bg-white"
+              wantsTour ? "bg-[#0058BD]" : "border-2 border-slate-300 bg-white"
             }`}
           >
-            {wantsTour && <Icon icon="mdi:check" className="text-white text-xs" />}
+            {wantsTour && (
+              <Icon icon="mdi:check" className="text-white text-xs" />
+            )}
           </button>
           <span className="text-sm text-slate-700">
-            I would like to attend the exclusive tour of the Google Chicago office
+            I would like to attend the exclusive tour of the Google Chicago
+            office
           </span>
         </div>
 
@@ -271,7 +292,7 @@ export default function RegisterForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="w-full bg-blue-900 hover:bg-blue-800 disabled:opacity-60 text-white font-semibold text-sm tracking-widest uppercase py-4 rounded-lg transition-colors"
+          className="w-full bg-[#0058BD] hover:bg-blue-800 disabled:opacity-60 text-white font-semibold text-sm tracking-widest uppercase py-4 rounded-xl transition-colors"
         >
           {status === "loading" ? "Submitting…" : "Register Now"}
         </button>
@@ -279,11 +300,14 @@ export default function RegisterForm() {
         {/* reCAPTCHA notice */}
         <p className="text-center text-xs text-slate-400">
           Protected by reCAPTCHA —{" "}
-          <a href="#" className="underline hover:text-slate-600">Privacy Policy</a>
-          {" "}&{" "}
-          <a href="#" className="underline hover:text-slate-600">Terms of Service</a>
+          <a href="#" className="underline hover:text-slate-600">
+            Privacy Policy
+          </a>{" "}
+          &{" "}
+          <a href="#" className="underline hover:text-slate-600">
+            Terms of Service
+          </a>
         </p>
-
       </form>
     </div>
   );

@@ -6,12 +6,12 @@ export default function HeroSection() {
     <div className=" flex flex-col justify-center overflow-hidden">
       {/* Decorative blue glow blob */}
       <div
-        className="absolute top-[20px] -left-[450px] w-[1500px] h-[350px] rounded-full pointer-events-none"
+        className="absolute bottom-[20px] -z-10 -right-[450px] w-[1500px] h-[350px] rounded-full pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, #bdd8f0 0%, #f2f6f8 55%, transparent 70%)",
           filter: "blur(40px)",
-          opacity: "70%",
+          opacity: "40%",
         }}
       />
 
@@ -22,9 +22,9 @@ export default function HeroSection() {
           <Image
             src="/assets/images/gmp.png"
             alt="Google Maps Platform"
-            width={300}
-            height={28}
-            className="object-contain"
+            width={420}
+            height={30}
+            className="object-contain w-full max-w-[300px] sm:max-w-[420px]"
           />
         </div>
 
@@ -41,7 +41,7 @@ export default function HeroSection() {
         </p>
 
         {/* Event info card */}
-        <div className="border border-slate-200 rounded-2xl p-6 max-w-md divide-y divide-slate-100 bg-white/60 backdrop-blur-sm">
+        <div className="border border-slate-200 rounded-2xl p-4 sm:p-6 max-w-md divide-y divide-slate-100 bg-white/60 backdrop-blur-sm">
           {/* Date & Time */}
           <div className="flex items-start gap-4 pb-5">
             <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">

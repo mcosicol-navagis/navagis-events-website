@@ -18,3 +18,8 @@ out/
 .DS_Store
 *.pem
 tsconfig.tsbuildinfo
+
+# large video files — serve from GCS, not git
+public/assets/videos/*.mp4
+public/assets/videos/*.mov
+public/assets/videos/*.webm

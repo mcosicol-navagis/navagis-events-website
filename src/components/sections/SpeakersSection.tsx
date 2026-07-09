@@ -37,7 +37,7 @@ const SPEAKERS = [
 
 export default function SpeakersSection() {
   return (
-    <section className="py-10 px-6">
+    <section className="py-10 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 text-center mb-14">

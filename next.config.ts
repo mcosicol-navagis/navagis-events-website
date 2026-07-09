@@ -1,15 +1,18 @@
 import type { NextConfig } from "next";
 
+const isStaticExport = process.env.STATIC_EXPORT === "true";
+
 const nextConfig: NextConfig = {
-  output: "export",
+  // Static export mode for GCS deployment (STATIC_EXPORT=true yarn build)
+  // Server mode for `yarn start` (default, no env var needed)
+  output: isStaticExport ? "export" : undefined,
   turbopack: {
     root: process.cwd(),
   },
-  assetPrefix: undefined,
   images: {
-    unoptimized: true,
+    unoptimized: isStaticExport,
   },
-  trailingSlash: true,
+  trailingSlash: isStaticExport,
   typescript: {
     ignoreBuildErrors: false,
   },

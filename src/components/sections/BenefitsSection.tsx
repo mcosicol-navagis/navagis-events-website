@@ -33,8 +33,8 @@ const BENEFITS = [
 
 export default function BenefitsSection() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-12 px-4 sm:px-6 md:py-20">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
           <span className="inline-block bg-slate-100 text-slate-500 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5">
@@ -46,16 +46,16 @@ export default function BenefitsSection() {
         </div>
 
         {/* 2-col staggered grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left column */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-8">
             {[BENEFITS[0], BENEFITS[2]].map((b) => (
               <Card key={b.title} {...b} />
             ))}
           </div>
 
           {/* Right column — offset down */}
-          <div className="flex flex-col gap-5 md:mt-14">
+          <div className="flex flex-col gap-8 md:mt-14">
             {[BENEFITS[1], BENEFITS[3]].map((b) => (
               <Card key={b.title} {...b} />
             ))}
@@ -80,7 +80,10 @@ function Card({
   body: string;
 }) {
   return (
-    <div className="relative border-1 border-gray-200 rounded-3xl p-8">
+    <div
+      data-aos="fade-up"
+      className="relative border-1 border-gray-200 rounded-3xl px-5 py-8 md:px-10 md:py-12"
+    >
       <div
         className="absolute -z-10 top-[20px] -left-[200px] w-[700px] h-[350px] rounded-full pointer-events-none"
         style={{
@@ -95,7 +98,7 @@ function Card({
       >
         <Icon icon={icon} className={`${iconColor} text-2xl`} />
       </div>
-      <h3 className="text-3xl font-medium text-slate-900 mb-4">
+      <h3 className="text-4xl font-semibold py-2 text-slate-900 mb-4">
         {title.split("\n").map((line, i, arr) => (
           <span key={i}>
             {line}
@@ -103,7 +106,7 @@ function Card({
           </span>
         ))}
       </h3>
-      <p className="text-[#424753] leading-relaxed text-md">{body}</p>
+      <p className="text-[#1B1B1C] leading-relaxed text-md ">{body}</p>
     </div>
   );
 }

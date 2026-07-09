@@ -35,3 +35,79 @@
     font-family: inherit;
   }
 }
+
+/* ── Phone input (react-phone-number-input) – light theme ── */
+.phone-input-wrapper {
+  position: relative;
+}
+
+.phone-input-wrapper .PhoneInputInput {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem 0.75rem 52px;
+  color: #1e293b;
+  font-size: 0.875rem;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.phone-input-wrapper .PhoneInputInput:focus {
+  border-color: #60a5fa;
+}
+
+.phone-input-wrapper .PhoneInputInput::placeholder {
+  color: #94a3b8;
+}
+
+.phone-input-wrapper .PhoneInputCountry {
+  position: absolute !important;
+  left: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.phone-input-wrapper .PhoneInputCountryIcon {
+  width: 22px;
+  height: 15px;
+  border: none !important;
+  border-radius: 2px;
+  overflow: hidden;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.phone-input-wrapper .PhoneInputCountrySelect {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+  appearance: none;
+  background: transparent !important;
+}
+
+.phone-input-wrapper .PhoneInputCountrySelect:focus,
+.phone-input-wrapper .PhoneInputCountrySelect:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.phone-input-wrapper .PhoneInputCountrySelectArrow,
+.phone-input-wrapper .PhoneInputCountry::after,
+.phone-input-wrapper .PhoneInputCountrySelect::after,
+.phone-input-wrapper .PhoneInputCountryIcon::after,
+.phone-input-wrapper .PhoneInputCountryIcon::before,
+.phone-input-wrapper .PhoneInputCountry svg {
+  display: none !important;
+}
+
