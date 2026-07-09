@@ -5,7 +5,7 @@ export default function AboutSection() {
         {/* Video */}
         <div className="w-full rounded-3xl overflow-hidden shadow-lg">
           <video
-            src="/assets/videos/Event_Promo.mp4"
+            src="/assets/videos/Event_Promo_Optimized.mp4"
             autoPlay
             muted
             loop

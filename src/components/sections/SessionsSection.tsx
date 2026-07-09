@@ -3,7 +3,7 @@ export default function SessionsSection() {
     <section className="relative w-full overflow-hidden">
       {/* Background video */}
       <video
-        src="/assets/videos/Office_Tour_Section.mp4"
+        src="/assets/videos/Office_Tour_Section_Optimized.mp4"
         autoPlay
         muted
         loop
