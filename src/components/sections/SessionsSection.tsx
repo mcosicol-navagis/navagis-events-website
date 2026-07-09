@@ -22,10 +22,7 @@ export default function SessionsSection() {
       />
 
       {/* Content */}
-      <div className="relative z-10 py-14 px-5 sm:py-20 sm:px-6 text-center text-white max-w-4xl mx-auto">
-        <span className="inline-block border border-white/60 text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6 sm:mb-8">
-          Sessions
-        </span>
+      <div className="relative z-10 py-14 px-5 sm:py-26 sm:px-6 text-center text-white max-w-4xl mx-auto">
         <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-5 leading-tight">
           Exclusive Google Chicago
           <br />

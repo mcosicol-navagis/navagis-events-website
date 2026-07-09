@@ -159,12 +159,12 @@ export default function CTASection() {
           >
             <div className="overflow-hidden">
               <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
-                <h3 className="text-xl font-bold text-slate-800 mb-1">
-                  Book a Consultation
-                </h3>
-                <p className="text-slate-500 text-sm mb-7">
+                <h3 className="text-md font-bold text-slate-800 mb-8">
                   Fill in your details and we&apos;ll get back to you shortly.
-                </p>
+                </h3>
+                {/* <p className="text-slate-500 text-sm mb-7">
+                  Fill in your details and we&apos;ll get back to you shortly.
+                </p> */}
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   {/* Work Email */}
@@ -215,64 +215,14 @@ export default function CTASection() {
                     </div>
                   </div>
 
-                  {/* Company Name */}
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">
-                      Company Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="companyName"
-                      placeholder="NavaFleet Logistics"
-                      value={form.companyName}
-                      onChange={handleChange}
-                      required
-                      className={inputCls}
-                    />
-                  </div>
-
-                  {/* Role / Job Level */}
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">
-                      Role / Job Level <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="jobTitle"
-                      placeholder="Operations Manager / Director"
-                      value={form.jobTitle}
-                      onChange={handleChange}
-                      required
-                      className={inputCls}
-                    />
-                  </div>
-
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">
-                      Phone Number
-                    </label>
-                    <PhoneInput
-                      international
-                      countryCallingCodeEditable={false}
-                      defaultCountry="US"
-                      value={form.phone}
-                      onChange={(val) =>
-                        setForm((prev) => ({ ...prev, phone: val ?? "" }))
-                      }
-                      placeholder="(555) 000-0000"
-                      className="phone-input-wrapper w-full"
-                    />
-                  </div>
-
                   {/* Message */}
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-1">
-                      Your Message
+                      What are you interested in learning about?
                     </label>
                     <textarea
                       name="message"
-                      placeholder="Tell us about your business needs..."
+                      placeholder=""
                       value={form.message}
                       onChange={handleChange}
                       rows={4}
@@ -291,7 +241,7 @@ export default function CTASection() {
                     disabled={status === "loading"}
                     className="w-full bg-[#0058BD] hover:bg-blue-800  disabled:opacity-60 text-white font-semibold text-sm tracking-widest uppercase py-4 rounded-xl transition-colors"
                   >
-                    {status === "loading" ? "Sending…" : "Send Message"}
+                    {status === "loading" ? "Sending…" : "Submit"}
                   </button>
                 </form>
               </div>

@@ -37,9 +37,6 @@ export default function BenefitsSection() {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
-          <span className="inline-block bg-slate-100 text-slate-500 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5">
-            Key Benefits
-          </span>
           <h2 className="text-4xl mb-18 md:text-5xl font-bold text-slate-900">
             What You Can Expect
           </h2>
