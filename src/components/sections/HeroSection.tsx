@@ -1,0 +1,86 @@
+import Image from "next/image";
+import { Icon } from "@iconify/react";
+
+export default function HeroSection() {
+  return (
+    <div className=" flex flex-col justify-center overflow-hidden">
+      {/* Decorative blue glow blob */}
+      <div
+        className="absolute top-[20px] -left-[450px] w-[1500px] h-[350px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, #bdd8f0 0%, #f2f6f8 55%, transparent 70%)",
+          filter: "blur(40px)",
+          opacity: "70%",
+        }}
+      />
+
+      {/* Content — sits above the blob */}
+      <div className="relative z-10 flex flex-col">
+        {/* GMP logo */}
+        <div className="flex items-center gap-2 mb-8">
+          <Image
+            src="/assets/images/gmp.png"
+            alt="Google Maps Platform"
+            width={300}
+            height={28}
+            className="object-contain"
+          />
+        </div>
+
+        {/* Heading */}
+        <h1 className="text-4xl md:text-7xl font-bold text-slate-900 leading-none mb-4">
+          Map the Way
+          <br />
+          Chicago
+        </h1>
+
+        {/* Subheading */}
+        <p className="text-xl font-semibold text-slate-700 mb-10">
+          Stop guessing. Start growing.
+        </p>
+
+        {/* Event info card */}
+        <div className="border border-slate-200 rounded-2xl p-6 max-w-md divide-y divide-slate-100 bg-white/60 backdrop-blur-sm">
+          {/* Date & Time */}
+          <div className="flex items-start gap-4 pb-5">
+            <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+              <Icon
+                icon="mdi:calendar-outline"
+                className="text-blue-600 text-xl"
+              />
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                Date &amp; Time
+              </p>
+              <p className="font-bold text-slate-800">September 24th, 2026</p>
+              <p className="text-slate-500 text-sm">12:00 PM to 3:30 PM CDT</p>
+            </div>
+          </div>
+
+          {/* Location */}
+          <div className="flex items-start gap-4 pt-5">
+            <div className="w-9 h-9 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0">
+              <Icon
+                icon="mdi:map-marker-outline"
+                className="text-green-600 text-xl"
+              />
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                Location
+              </p>
+              <p className="font-bold text-slate-800">
+                Google Chicago - Fulton Market
+              </p>
+              <p className="text-slate-500 text-sm">
+                320 N Morgan St Suite 600, Chicago, IL 60607
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

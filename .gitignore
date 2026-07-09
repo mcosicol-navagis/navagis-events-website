@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# next.js
+.next/
+out/
+
+# env
+.env.local
+.env.*.local
+
+# misc
+.DS_Store
+*.pem
+tsconfig.tsbuildinfo
