@@ -89,7 +89,7 @@ export default function RegisterForm() {
       {status === "success" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            className="absolute inset-0  backdrop-blur-sm"
             onClick={() => setStatus("idle")}
           />
           <div className="relative bg-white rounded-2xl shadow-xl p-10 max-w-sm w-full mx-4 text-center">
