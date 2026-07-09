@@ -85,6 +85,16 @@ export default function RegisterForm() {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
+      {/* Decorative blue glow blob */}
+      <div
+        className="absolute bottom-[20px] -z-10 -right-[600px] w-[1500px] h-[350px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, #bdd8f0 0%, #f2f6f8 55%, transparent 70%)",
+          filter: "blur(40px)",
+          opacity: "40%",
+        }}
+      />
       {/* Success modal */}
       {status === "success" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">

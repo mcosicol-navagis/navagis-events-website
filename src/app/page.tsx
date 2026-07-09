@@ -12,10 +12,10 @@ export default function HomePage() {
       <section
         id="register"
         className="min-h-screen max-w-[100%] flex items-center justify-center px-4 sm:px-6 py-12 lg:py-16 relative overflow-x-hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 80% at 0% 0%, #cfe0f5 0%, #e8f2fb 30%, #ffffff 65%)",
-        }}
+        // style={{
+        //   background:
+        //     "radial-gradient(ellipse 80% 80% at 0% 0%, #cfe0f5 0%, #e8f2fb 30%, #ffffff 65%)",
+        // }}
       >
         <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           <div data-aos="fade-right">

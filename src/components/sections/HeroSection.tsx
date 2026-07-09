@@ -3,18 +3,7 @@ import { Icon } from "@iconify/react";
 
 export default function HeroSection() {
   return (
-    <div className=" flex flex-col justify-center overflow-hidden">
-      {/* Decorative blue glow blob */}
-      <div
-        className="absolute bottom-[20px] -z-10 -right-[450px] w-[1500px] h-[350px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, #bdd8f0 0%, #f2f6f8 55%, transparent 70%)",
-          filter: "blur(40px)",
-          opacity: "40%",
-        }}
-      />
-
+    <div className="flex flex-col justify-center">
       {/* Content — sits above the blob */}
       <div className="relative z-10 flex flex-col">
         {/* GMP logo */}
