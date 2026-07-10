@@ -114,7 +114,7 @@ export default function CTASection() {
       <div className="max-w-6xl mx-auto">
         <div className="bg-slate-50 rounded-t-3xl px-5 py-8 md:px-12 md:py-12">
           {/* Top row */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+          <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
             {/* Left — text + button */}
             <div className="max-w-md">
               <h2 className="text-4xl text-[#424753] font-bold mb-4">
@@ -138,7 +138,7 @@ export default function CTASection() {
             </div>
 
             {/* Right — illustration */}
-            <div className="flex-shrink-0 md:flex md:justify-end w-full max-w-sm lg:max-w-md">
+            <div className="flex-shrink-0 flex justify-center md:justify-end w-full max-w-sm lg:max-w-md">
               <Image
                 src="/assets/images/objects.png"
                 alt="Schedule a consultation"
@@ -158,7 +158,7 @@ export default function CTASection() {
             }`}
           >
             <div className="overflow-hidden">
-              <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
+              <div className="bg-white rounded-2xl  p-8 md:p-10">
                 <h3 className="text-md font-bold text-slate-800 mb-8">
                   Fill in your details and we&apos;ll get back to you shortly.
                 </h3>

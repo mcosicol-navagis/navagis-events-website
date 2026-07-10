@@ -79,7 +79,7 @@ function Card({
   return (
     <div
       data-aos="fade-up"
-      className="relative border-1 border-gray-200 rounded-3xl px-5 py-8 md:px-10 md:py-12"
+      className="relative overflow-hidden border-1 border-gray-200 rounded-3xl px-5 py-8 md:px-10 md:py-12"
     >
       <div
         className="absolute -z-10 top-[20px] -left-[200px] w-[700px] h-[350px] rounded-full pointer-events-none"
