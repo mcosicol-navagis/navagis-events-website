@@ -58,18 +58,19 @@ const RIGHT = [BENEFITS[1], BENEFITS[3], BENEFITS[5]];
 
 export default function BenefitsSection() {
   return (
-    <section className="py-12 px-4 sm:px-6 md:py-20">
+    <section className="py-12 mb-14 px-4 sm:px-6 md:py-20">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-4">
           <h2 className="text-4xl mb-14 md:text-5xl font-bold text-slate-900">
-            Topics For Your Unique <br /> Industry Challenges.
+            Topics For Your Unique <br className="hidden md:block" /> Industry
+            Challenges.
           </h2>
         </div>
 
         <div data-aos="fade-up">
           <QuestionFlipSection />
-          <p className="text-[#424753] text-center md:max-w-2xl mx-auto mb-14">
+          <p className="text-[#424753] text-lg md:text-xl text-center md:max-w-2xl mx-auto mb-14">
             No matter your sector, if your business operates in the physical
             world, understanding the "where" and "why" is key to making better
             decisions.

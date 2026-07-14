@@ -10,13 +10,9 @@ import AnimatedLines from "@/components/AnimatedLines";
 export default function HomePage() {
   return (
     <>
-      <div className="-mt-[100px] -z-20 absolute -top-4 opacity-20">
-        {" "}
-        <AnimatedLines />
-      </div>
       <section
         id="register"
-        className="max-w-[100%] flex -mt-14 items-center justify-center px-4 sm:px-6 py-16 lg:py-24 relative overflow-x-hidden"
+        className="max-w-[100%] flex lg:-mt-14 items-center justify-center px-4 sm:px-6 py-16 lg:py-24 relative overflow-x-hidden"
         // style={{
         //   background:
         //     "radial-gradient(ellipse 80% 80% at 0% 0%, #cfe0f5 0%, #e8f2fb 30%, #ffffff 65%)",
@@ -38,10 +34,6 @@ export default function HomePage() {
       <div data-aos="fade-up">
         <BenefitsSection />
       </div>
-      <div className="-mt-[300px] -z-20">
-        {" "}
-        <AnimatedLines />
-      </div>
 
       <div data-aos="fade-up">
         <SessionsSection />
@@ -52,7 +44,6 @@ export default function HomePage() {
       <div data-aos="fade-up">
         <CountdownSection />
       </div>
-      <AnimatedLines />
     </>
   );
 }

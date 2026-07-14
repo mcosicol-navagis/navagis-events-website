@@ -38,7 +38,8 @@ export default function HeroSection() {
           data-aos-delay="800"
           className="text-xl font-semibold text-slate-700 mb-10"
         >
-          Stop guessing. Start growing.
+          Discover what's next for your business with AI-powered location
+          intelligence.
         </p>
 
         {/* Event info card */}

@@ -37,7 +37,7 @@ export default function CountdownSection() {
   ];
 
   return (
-    <section className=" px-4 sm:px-6 relative">
+    <section className=" px-4 sm:px-6 relative mb-10">
       <div className="max-w-6xl mx-auto ">
         <div
           className="rounded-3xl px-4 py-10 md:px-10 md:py-16 text-center text-white"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 
 const QUESTIONS = [
@@ -27,7 +27,7 @@ const QUESTIONS = [
   "How do we replace high-maintenance roadside hardware? ",
 ];
 
-const INTERVAL = 2800;
+const INTERVAL = 4000;
 
 const containerVariants: Variants = {
   hidden: {},
@@ -50,7 +50,15 @@ export default function QuestionFlipSection() {
   const [containerWidth, setContainerWidth] = useState<number | undefined>(
     undefined,
   );
+  const [isMobile, setIsMobile] = useState(false);
   const ghostRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Measure initial width
   useEffect(() => {
@@ -74,17 +82,17 @@ export default function QuestionFlipSection() {
   }, []);
 
   return (
-    <section className="px-4 sm:px-6 mb-14 ">
-      <div className="max-w-6xl mx-auto flex justify-center ">
+    <section className="px-4 sm:px-6 mb-14">
+      <div className="max-w-6xl mx-auto flex justify-center">
         <div className="bg-[#F0F2F5] rounded-2xl px-8 py-5 shadow-xl border border-gray-200 inline-flex items-center max-w-full overflow-hidden">
           {/* Width-animating container */}
           <motion.span
-            animate={{ width: containerWidth }}
-            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+            animate={{ width: isMobile ? undefined : containerWidth }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
               display: "inline-block",
               overflow: "hidden",
-              whiteSpace: "nowrap",
+              whiteSpace: isMobile ? "normal" : "nowrap",
             }}
           >
             <AnimatePresence mode="wait">
@@ -97,15 +105,30 @@ export default function QuestionFlipSection() {
                 style={{ display: "inline-block" }}
                 className="text-xl sm:text-2xl font-bold text-[#1B1B1C]"
               >
-                {QUESTIONS[index].split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    variants={charVariants}
-                    style={{ display: "inline-block" }}
-                  >
-                    {char === " " ? " " : char}
-                  </motion.span>
-                ))}
+                {QUESTIONS[index]
+                  .split(" ")
+                  .filter(Boolean)
+                  .map((word, wordIdx, words) => (
+                    <Fragment key={wordIdx}>
+                      <span
+                        style={{
+                          display: "inline-block",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {word.split("").map((char, ci) => (
+                          <motion.span
+                            key={`${wordIdx}-${ci}`}
+                            variants={charVariants}
+                            style={{ display: "inline-block" }}
+                          >
+                            {char}
+                          </motion.span>
+                        ))}
+                      </span>
+                      {wordIdx < words.length - 1 && " "}
+                    </Fragment>
+                  ))}
               </motion.span>
             </AnimatePresence>
           </motion.span>
