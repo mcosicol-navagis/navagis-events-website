@@ -6,10 +6,13 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 const INTEREST_OPTIONS = [
-  "Strategic Site Selection & Market Analytics",
-  "End-to-End Retail & Logistics Operations",
-  "Immersive 3D Customer Experiences",
-  "Geospatial AI & Spatial Reasoning",
+  "Retail & Site Selection",
+  "Logistics & Fulfillment",
+  "Geospatial Analytics",
+  "Brand & Reputation Intelligence",
+  "Public Safety & Civic Use",
+  "AI Agents & Location Data",
+  "Immersive Experiences",
   "Other",
 ];
 
@@ -59,13 +62,16 @@ export default function RegisterForm() {
     setStatus("loading");
 
     try {
-      const scriptUrl = process.env.NEXT_PUBLIC_SCRIPT_URL;
+      const scriptUrl =
+        "https://script.google.com/macros/s/AKfycbz57TegFsjdlpMf0_s14dydcvNR9bNQTPPahY2IlB512__B8dpVSD-dneDW4RPDF0Ze/exec";
       if (!scriptUrl) throw new Error("NEXT_PUBLIC_SCRIPT_URL is not set.");
 
       await fetch(scriptUrl, {
         method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
+          type: "registration",
           ...form,
           interests: interests.join(", "),
           wantsTour,
@@ -302,7 +308,7 @@ export default function RegisterForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="w-full bg-[#0058BD] hover:bg-blue-800 disabled:opacity-60 text-white font-semibold text-sm tracking-widest uppercase py-4 rounded-xl transition-colors"
+          className="w-full bg-[#0058BD] hover:bg-[#15397A] disabled:opacity-60 text-white font-semibold text-sm tracking-widest uppercase py-4 rounded-xl transition-colors"
         >
           {status === "loading" ? "Submitting…" : "Register Now"}
         </button>

@@ -5,7 +5,7 @@ export default function AboutSection() {
         {/* Video */}
         <div className="w-full rounded-3xl overflow-hidden shadow-lg">
           <video
-            src="/assets/videos/Event_Promo_Optimized.mp4"
+            src="/assets/videos/event2.mp4"
             autoPlay
             muted
             loop
@@ -17,18 +17,22 @@ export default function AboutSection() {
 
         {/* Text */}
         <div className="">
-          <h2 className="text-4xl md:text-5xl  font-bold text-slate-900 leading-tight mb-6">
-            Unlock the Real-World Context of Every Location
+          <h2
+            data-aos="fade-right"
+            className="text-4xl md:text-5xl  font-bold text-slate-900 leading-tight mb-6"
+          >
+            Stop Guessing. <br /> Start Predicting <br /> & Grow.
           </h2>
-          <p className="text-[#1B1B1C] text-lg leading-relaxed">
-            Most businesses have mastered their internal data, but the real
-            world outside their doors remains a black box. Join the Google Maps
-            Platform and Navagis teams for an exclusive, in-person event to
-            bridge that gap. We will explore how combining enterprise-grade
-            location intelligence with advanced cloud computing and AI can solve
-            complex “where” and “why” questions across your business. Learn how
-            to turn location data into strategic alpha and stop guessing where
-            to grow.
+          <p
+            data-aos="fade-right"
+            className="text-[#1B1B1C] md:max-w-[80%] text-xl leading-relaxed"
+          >
+            Join Google Maps Platform and Navagis for an exclusive, in-person
+            event to move beyond descriptive analytics and static spreadsheets.
+            Discover how to bridge the gap between historical data and future
+            trends by visually mapping your real-world context and applying
+            AI-powered location intelligence directly to your industry's biggest
+            challenges.
           </p>
         </div>
       </div>

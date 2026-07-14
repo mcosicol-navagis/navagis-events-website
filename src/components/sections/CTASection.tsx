@@ -12,9 +12,6 @@ const EMPTY_FORM = {
   email: "",
   firstName: "",
   lastName: "",
-  companyName: "",
-  jobTitle: "",
-  phone: "",
   message: "",
 };
 
@@ -52,10 +49,20 @@ export default function CTASection() {
     e.preventDefault();
     setStatus("loading");
     try {
-      setTimeout(() => {
-        setStatus("success");
-        setCountdown(10);
-      }, 1000);
+      const scriptUrl =
+        "https://script.google.com/macros/s/AKfycbz57TegFsjdlpMf0_s14dydcvNR9bNQTPPahY2IlB512__B8dpVSD-dneDW4RPDF0Ze/exec";
+      if (!scriptUrl) throw new Error("NEXT_PUBLIC_SCRIPT_URL is not set.");
+
+      await fetch(scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ type: "connect", ...form }),
+      });
+
+      setStatus("success");
+      setCountdown(10);
+
       tickRef.current = setInterval(() => {
         setCountdown((n) => {
           if (n <= 1) {
@@ -67,7 +74,8 @@ export default function CTASection() {
       }, 1000);
 
       timerRef.current = setTimeout(closeAndReset, 10000);
-    } catch {
+    } catch (err) {
+      console.error("[Connect form]", err);
       setStatus("error");
     }
   };
@@ -112,22 +120,28 @@ export default function CTASection() {
       )}
 
       <div className="max-w-6xl mx-auto">
-        <div className="bg-slate-50 rounded-t-3xl px-5 py-8 md:px-12 md:py-12">
+        <div className="bg-slate-50 rounded-3xl mb-10 px-5 py-8 md:px-12 md:py-12">
           {/* Top row */}
           <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
             {/* Left — text + button */}
             <div className="max-w-md">
-              <h2 className="text-4xl text-[#424753] font-bold mb-4">
+              <h2
+                data-aos="fade-right"
+                className="text-4xl text-[#424753] font-bold mb-4"
+              >
                 Can&apos;t Make The Event?
               </h2>
-              <p className="text-[#1B1B1C] leading-relaxed mb-8">
+              <p
+                data-aos="fade-right"
+                className="text-[#1B1B1C] leading-relaxed mb-8"
+              >
                 We understand! Reach out to book a personalized 1-on-1
                 consultation to explore how Google Maps Platform, Google Cloud,
                 and AI can support your specific business needs.
               </p>
               <button
                 onClick={() => setShowForm((v) => !v)}
-                className="inline-flex items-center gap-2 bg-[#0058BD] hover:bg-blue-800 text-white text-sm font-bold tracking-widest uppercase px-10 py-4 rounded-xl transition-colors"
+                className="inline-flex items-center gap-2 bg-[#0058BD] hover:bg-[#15397A] text-white text-sm font-bold tracking-widest uppercase px-10 py-4 rounded-xl transition-colors"
               >
                 Let&apos;s Connect!
                 <Icon
@@ -239,7 +253,7 @@ export default function CTASection() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full bg-[#0058BD] hover:bg-blue-800  disabled:opacity-60 text-white font-semibold text-sm tracking-widest uppercase py-4 rounded-xl transition-colors"
+                    className="w-full bg-[#0058BD] hover:bg-[#15397A] disabled:opacity-60 text-white font-semibold text-sm tracking-widest uppercase py-4 rounded-xl transition-colors"
                   >
                     {status === "loading" ? "Sending…" : "Submit"}
                   </button>

@@ -7,7 +7,11 @@ export default function HeroSection() {
       {/* Content — sits above the blob */}
       <div className="relative z-10 flex flex-col">
         {/* GMP logo */}
-        <div className="flex items-center gap-2 mb-8">
+        <div
+          data-aos="fade-right"
+          data-aos-delay="200"
+          className="flex items-center gap-2 mb-8"
+        >
           <Image
             src="/assets/images/gmp.png"
             alt="Google Maps Platform"
@@ -18,19 +22,31 @@ export default function HeroSection() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-4xl md:text-7xl font-bold text-slate-900 leading-none mb-4">
+        <h1
+          data-aos="fade-right"
+          data-aos-delay="600"
+          className="text-4xl md:text-7xl font-bold text-slate-900 leading-none mb-4"
+        >
           Map the Way
           <br />
           Chicago
         </h1>
 
         {/* Subheading */}
-        <p className="text-xl font-semibold text-slate-700 mb-10">
+        <p
+          data-aos="fade-right"
+          data-aos-delay="800"
+          className="text-xl font-semibold text-slate-700 mb-10"
+        >
           Stop guessing. Start growing.
         </p>
 
         {/* Event info card */}
-        <div className="border border-slate-200 rounded-2xl p-4 sm:p-6 max-w-md divide-y divide-slate-100 bg-white/60 backdrop-blur-sm">
+        <div
+          data-aos="fade-right"
+          data-aos-delay="1000"
+          className=" border border-slate-200 rounded-2xl p-4 sm:p-6 max-w-md divide-y divide-slate-100 bg-white/60 backdrop-blur-sm"
+        >
           {/* Date & Time */}
           <div className="flex items-start gap-4 pb-5">
             <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">

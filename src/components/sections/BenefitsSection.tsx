@@ -1,59 +1,93 @@
 import { Icon } from "@iconify/react";
+import QuestionFlipSection from "./QuestionFlipSection";
 
 const BENEFITS = [
   {
-    icon: "uil:focus-target",
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
-    title: "Strategic Site \n Selection",
-    body: "Stop searching for vacant lots and start finding thriving ecosystems. Securely combine your internal data with rich, planetary-scale geospatial datasets to instantly deploy predictive analytics, evaluate market saturation, and confidently select sites with the highest ROI potential.",
+    icon: "fluent:building-retail-24-regular",
+    iconBg: "bg-[#E2ECF6]",
+    iconColor: "text-[#4285F4]",
+    title: "Retail & Site Selection",
+    body: "You picked that location based on demographics, but your competitor picked theirs based on actual foot traffic. Discover the difference.",
   },
   {
-    icon: "mdi:account-star-outline",
-    iconBg: "bg-green-100",
-    iconColor: "text-green-600",
-    title: "Immersive Customer Experiences",
-    body: "Deepen customer engagement by turning standard navigation into captivating digital exploration. Utilize photorealistic visual environments to create immersive, branded journeys that give users a true feel for their destination before they even leave the house.",
+    icon: "carbon:chart-logistic-regression",
+    iconBg: "bg-[#E1ECE8]",
+    iconColor: "text-[#006E2C]",
+    title: "Logistics & Fulfillment",
+    body: "The visibility gap between a dispatched driver and a waiting customer is costing you more than you think.",
   },
   {
-    icon: "mdi:trending-up",
-    iconBg: "bg-red-100",
-    iconColor: "text-red-500",
-    title: "Streamlined Operations \n & Fulfillment",
-    body: "Achieve greater operational efficiency from the warehouse to the front door. Discover how hyper-precise delivery windows, optimized fleet routing, and seamless automated arrival tracking can prevent misrouted handoffs and streamline in-store pickups.",
+    icon: "ion:analytics",
+    iconBg: "bg-[#EBE3E6]",
+    iconColor: "text-[#B51B15]",
+    title: "Geospatial Analytics",
+    body: "You have more data than ever, but none of it tells you what's happening within a mile of your locations.",
   },
   {
     icon: "mdi:account-group-outline",
-    iconBg: "bg-amber-100",
-    iconColor: "text-amber-600",
-    title: "AI-Powered Spatial Reasoning",
-    body: 'Give your AI a "visual voice" and anchor its reasoning in the physical world. Move beyond simple chatbots by integrating real-world location context into your large language models, providing users with factual, real-time travel estimates, multi-modal routing, and spatial answers directly within your applications.',
+    iconBg: "bg-[#FAF0D0]",
+    iconColor: "text-[#DFA705]",
+    title: "Brand & Reputation Intelligence",
+    body: "Customers leave reviews and then they leave your brand. Visualize the patterns before the churn shows up in revenue.",
+  },
+  {
+    icon: "mdi:shield-check-outline",
+    iconBg: "bg-[#E2ECF6]",
+    iconColor: "text-[#4285F4]",
+    title: "Public Safety & Civic Use",
+    body: "The most dangerous intersections in your city are already visible in roadway intelligence data before the accidents even happen.",
+  },
+  {
+    icon: "mingcute:ai-line",
+    iconBg: "bg-[#E1ECE8]",
+    iconColor: "text-[#006E2C]",
+    title: "AI Agents & Spatial Reasoning",
+    body: 'Give your AI a "visual voice" and anchor its reasoning in the physical world to move beyond simple chatbots and provide factual, real-time spatial answers.',
+  },
+  {
+    icon: "majesticons:map-simple-destination-line",
+    iconBg: "bg-[#EBE3E6]",
+    iconColor: "text-[#B51B15]",
+    title: "Immersive Experiences",
+    body: "The gap between a browsed destination and a booked one is smaller than you think when you use immersive experiences to close it.",
   },
 ];
+
+const LEFT = [BENEFITS[0], BENEFITS[2], BENEFITS[4], BENEFITS[6]];
+const RIGHT = [BENEFITS[1], BENEFITS[3], BENEFITS[5]];
 
 export default function BenefitsSection() {
   return (
     <section className="py-12 px-4 sm:px-6 md:py-20">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-4xl mb-18 md:text-5xl font-bold text-slate-900">
-            What You Can Expect
+        <div className="text-center mb-4">
+          <h2 className="text-4xl mb-14 md:text-5xl font-bold text-slate-900">
+            Topics For Your Unique <br /> Industry Challenges.
           </h2>
         </div>
 
+        <div data-aos="fade-up">
+          <QuestionFlipSection />
+          <p className="text-[#424753] text-center md:max-w-2xl mx-auto mb-14">
+            No matter your sector, if your business operates in the physical
+            world, understanding the "where" and "why" is key to making better
+            decisions.
+          </p>
+        </div>
+
         {/* 2-col staggered grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left column */}
-          <div className="flex flex-col gap-8">
-            {[BENEFITS[0], BENEFITS[2]].map((b) => (
+          <div className="flex flex-col gap-6">
+            {LEFT.map((b) => (
               <Card key={b.title} {...b} />
             ))}
           </div>
 
           {/* Right column — offset down */}
-          <div className="flex flex-col gap-8 md:mt-14">
-            {[BENEFITS[1], BENEFITS[3]].map((b) => (
+          <div className="flex flex-col gap-6 md:mt-14">
+            {RIGHT.map((b) => (
               <Card key={b.title} {...b} />
             ))}
           </div>
@@ -79,7 +113,7 @@ function Card({
   return (
     <div
       data-aos="fade-up"
-      className="relative overflow-hidden border-1 border-gray-200 rounded-3xl px-5 py-8 md:px-10 md:py-12"
+      className="relative  overflow-hidden border border-gray-200 rounded-2xl px-10 py-10"
     >
       <div
         className="absolute -z-10 top-[20px] -left-[200px] w-[700px] h-[350px] rounded-full pointer-events-none"
@@ -87,23 +121,26 @@ function Card({
           background:
             "radial-gradient(circle, #bdd8f0 0%, #f2f6f8 55%, transparent 70%)",
           filter: "blur(40px)",
-          opacity: "30%",
+          opacity: "20%",
         }}
       />
       <div
-        className={`w-11 h-11 rounded-xl ${iconBg} flex items-center justify-center mb-6`}
+        className={`w-12 h-12 rounded-xl ${iconBg} flex items-center justify-center mb-5`}
       >
-        <Icon icon={icon} className={`${iconColor} text-2xl`} />
+        <Icon icon={icon} className={`${iconColor} text-3xl`} />
       </div>
-      <h3 className="text-4xl font-semibold py-2 text-slate-900 mb-4">
-        {title.split("\n").map((line, i, arr) => (
-          <span key={i}>
-            {line}
-            {i < arr.length - 1 && <br />}
-          </span>
-        ))}
+      <h3
+        data-aos="fade-right"
+        className="text-3xl font-bold text-slate-900 mb-3"
+      >
+        {title}
       </h3>
-      <p className="text-[#1B1B1C] leading-relaxed text-md ">{body}</p>
+      <p
+        data-aos="fade-right"
+        className="text-[#424753] leading-relaxed text-md"
+      >
+        {body}
+      </p>
     </div>
   );
 }
