@@ -67,9 +67,10 @@ export default function CountdownSection() {
             ))}
           </div>
 
-          <p className="text-sm text-blue-100">
-            Please note travel and parking will be at the expense of the
-            attendee. Please bring a government-issued ID to receive your event
+          <p className="text-md text-blue-100">
+            Please note that travel and parking are at the expense of the
+            attendee, and a government-issued ID{" "}
+            <br className="hidden md:block" /> is required to receive your event
             badge.
           </p>
         </div>

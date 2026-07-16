@@ -47,11 +47,11 @@ const charVariants: Variants = {
 
 export default function QuestionFlipSection() {
   const [index, setIndex] = useState(0);
-  const [containerWidth, setContainerWidth] = useState<number | undefined>(
-    undefined,
-  );
+  const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const ghostRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -67,8 +67,18 @@ export default function QuestionFlipSection() {
     }
   }, []);
 
-  // Cycle questions
+  // Start cycling only when section is in view
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.3 },
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
     const timer = setInterval(() => {
       setIndex((prev) => {
         const next = (prev + 1) % QUESTIONS.length;
@@ -79,10 +89,10 @@ export default function QuestionFlipSection() {
       });
     }, INTERVAL);
     return () => clearInterval(timer);
-  }, []);
+  }, [isVisible]);
 
   return (
-    <section className="px-4 sm:px-6 mb-14">
+    <section ref={sectionRef} className="px-4 sm:px-6 mb-14">
       <div className="max-w-6xl mx-auto flex justify-center">
         <div className="bg-[#F0F2F5] rounded-2xl px-8 py-5 shadow-xl border border-gray-200 inline-flex items-center max-w-full overflow-hidden">
           {/* Width-animating container */}

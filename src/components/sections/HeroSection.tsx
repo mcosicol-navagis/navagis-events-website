@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 export default function HeroSection() {
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center ">
       {/* Content — sits above the blob */}
       <div className="relative z-10 flex flex-col">
         {/* GMP logo */}

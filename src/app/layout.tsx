@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${plusJakarta.variable}`}>
+      <body className={`${inter.variable} ${plusJakarta.variable} overflow-x-hidden`}>
         <AOSProvider />
         <main>{children}</main>
       </body>

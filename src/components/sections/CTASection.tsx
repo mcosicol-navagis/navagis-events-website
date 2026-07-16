@@ -154,7 +154,7 @@ export default function CTASection() {
             {/* Right — illustration */}
             <div className="flex-shrink-0 flex justify-center md:justify-end w-full max-w-sm lg:max-w-md">
               <Image
-                src="/assets/images/objects.png"
+                src="/assets/images/cta-image.png"
                 alt="Schedule a consultation"
                 width={480}
                 height={300}
@@ -174,7 +174,7 @@ export default function CTASection() {
             <div className="overflow-hidden">
               <div className="bg-white rounded-2xl  p-8 md:p-10">
                 <h3 className="text-md font-bold text-slate-800 mb-8">
-                  Fill in your details and we&apos;ll get back to you shortly.
+                  Please tell us more and we will reach out to you shortly.
                 </h3>
                 {/* <p className="text-slate-500 text-sm mb-7">
                   Fill in your details and we&apos;ll get back to you shortly.
@@ -206,7 +206,7 @@ export default function CTASection() {
                       <input
                         type="text"
                         name="firstName"
-                        placeholder="Jane"
+                        placeholder="First Name"
                         value={form.firstName}
                         onChange={handleChange}
                         required
@@ -220,7 +220,7 @@ export default function CTASection() {
                       <input
                         type="text"
                         name="lastName"
-                        placeholder="Doe"
+                        placeholder="Last Name"
                         value={form.lastName}
                         onChange={handleChange}
                         required
@@ -236,7 +236,7 @@ export default function CTASection() {
                     </label>
                     <textarea
                       name="message"
-                      placeholder=""
+                      placeholder="I'd like to learn more about Google's new geospatial analytics capabilities..."
                       value={form.message}
                       onChange={handleChange}
                       rows={4}

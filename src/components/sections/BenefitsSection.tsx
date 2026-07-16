@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import QuestionFlipSection from "./QuestionFlipSection";
 
@@ -111,12 +115,37 @@ function Card({
   title: string;
   body: string;
 }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width - 0.5;
+    const ny = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: ny * -8, y: nx * 8 });
+  };
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+
   return (
-    <div
-      data-aos="fade-up"
-      className="relative  overflow-hidden border border-gray-200 rounded-2xl px-10 py-10"
+    <div data-aos="fade-up">
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{
+        rotateX: tilt.x,
+        rotateY: tilt.y,
+        scale: tilt.x !== 0 || tilt.y !== 0 ? 1.02 : 1,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.5 }}
+      style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+      className="relative overflow-hidden border border-gray-200 rounded-2xl px-10 py-10 cursor-default"
     >
       <div
+        data-aos="fade-up"
         className="absolute -z-10 top-[20px] -left-[200px] w-[700px] h-[350px] rounded-full pointer-events-none"
         style={{
           background:
@@ -142,6 +171,7 @@ function Card({
       >
         {body}
       </p>
+    </motion.div>
     </div>
   );
 }

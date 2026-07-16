@@ -12,7 +12,7 @@ export default function HomePage() {
     <>
       <section
         id="register"
-        className="max-w-[100%] flex lg:-mt-14 items-center justify-center px-4 sm:px-6 py-16 lg:py-24 relative overflow-x-hidden"
+        className="max-w-[100%] flex items-center justify-center px-4 sm:px-6 py-16 lg:py-10 relative"
         // style={{
         //   background:
         //     "radial-gradient(ellipse 80% 80% at 0% 0%, #cfe0f5 0%, #e8f2fb 30%, #ffffff 65%)",

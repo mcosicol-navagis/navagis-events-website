@@ -79,6 +79,16 @@ export default function RegisterForm() {
       });
 
       setStatus("success");
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        companyName: "",
+        jobTitle: "",
+        phone: "",
+      });
+      setInterests([]);
+      setWantsTour(true);
     } catch {
       setStatus("error");
     }
@@ -90,7 +100,7 @@ export default function RegisterForm() {
       : interests.join(", ");
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10">
+    <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 ">
       {/* Decorative blue glow blob */}
       <div
         className="absolute bottom-[20px] -z-10 -right-[600px] w-[1500px] h-[350px] rounded-full pointer-events-none"
@@ -142,7 +152,7 @@ export default function RegisterForm() {
             <input
               type="text"
               name="firstName"
-              placeholder="John"
+              placeholder="First Name"
               value={form.firstName}
               onChange={handleChange}
               required
@@ -156,7 +166,7 @@ export default function RegisterForm() {
             <input
               type="text"
               name="lastName"
-              placeholder="Doe"
+              placeholder="Last Name"
               value={form.lastName}
               onChange={handleChange}
               required
@@ -189,7 +199,7 @@ export default function RegisterForm() {
           <input
             type="text"
             name="companyName"
-            placeholder="Acme Corp"
+            placeholder="Company"
             value={form.companyName}
             onChange={handleChange}
             required
@@ -292,8 +302,7 @@ export default function RegisterForm() {
             )}
           </button>
           <span className="text-sm text-slate-700">
-            I would like to attend the exclusive tour of the Google Chicago
-            office
+            I would like a tour of the Google Chicago office
           </span>
         </div>
 
