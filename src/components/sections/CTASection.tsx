@@ -3,8 +3,21 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
-import PhoneInput from "react-phone-number-input";
-import "react-phone-number-input/style.css";
+
+const RECAPTCHA_SITE_KEY = "6Leu1FctAAAAAP47TDcdb6THKR8nN-lrfXR8-hjn";
+
+function getRecaptchaToken(action: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).grecaptcha.ready(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).grecaptcha
+        .execute(RECAPTCHA_SITE_KEY, { action })
+        .then(resolve)
+        .catch(reject);
+    });
+  });
+}
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -45,19 +58,20 @@ export default function CTASection() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
     try {
+      const recaptchaToken = await getRecaptchaToken("connect");
+
       const scriptUrl =
         "https://script.google.com/macros/s/AKfycbz57TegFsjdlpMf0_s14dydcvNR9bNQTPPahY2IlB512__B8dpVSD-dneDW4RPDF0Ze/exec";
-      if (!scriptUrl) throw new Error("NEXT_PUBLIC_SCRIPT_URL is not set.");
 
       await fetch(scriptUrl, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ type: "connect", ...form }),
+        body: JSON.stringify({ type: "connect", ...form, recaptchaToken }),
       });
 
       setStatus("success");
@@ -84,7 +98,7 @@ export default function CTASection() {
     "w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-400 transition-colors";
 
   return (
-    <section className="py-0 pt-8 sm:pt-12 px-4 sm:px-6">
+    <section className="py-0 pt-8 sm:pt-12 px-2  sm:px-6">
       {/* Success modal */}
       {status === "success" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -127,21 +141,22 @@ export default function CTASection() {
             <div className="max-w-md">
               <h2
                 data-aos="fade-right"
-                className="text-4xl text-[#424753] font-bold mb-4"
+                className="text-4xl text-center lg:text-left text-[#424753] font-bold mb-4"
               >
                 Can&apos;t Make The Event?
               </h2>
               <p
                 data-aos="fade-right"
-                className="text-[#1B1B1C] leading-relaxed mb-8"
+                className="text-[#1B1B1C] text-center lg:text-left leading-relaxed mb-8"
               >
                 We understand! Reach out to book a personalized 1-on-1
                 consultation to explore how Google Maps Platform, Google Cloud,
                 and AI can support your specific business needs.
               </p>
               <button
+                data-aos="fade-right"
                 onClick={() => setShowForm((v) => !v)}
-                className="inline-flex items-center gap-2 bg-[#0058BD] hover:bg-[#15397A] text-white text-sm font-bold tracking-widest uppercase px-10 py-4 rounded-xl transition-colors"
+                className="flex w-full md:w-fit mx-auto lg:mx-0 justify-center items-center gap-2 bg-[#0058BD] hover:bg-[#15397A] text-white text-sm font-bold tracking-widest uppercase px-10 py-4 rounded-xl transition-colors"
               >
                 Let&apos;s Connect!
                 <Icon
@@ -154,6 +169,7 @@ export default function CTASection() {
             {/* Right — illustration */}
             <div className="flex-shrink-0 flex justify-center md:justify-end w-full max-w-sm lg:max-w-md">
               <Image
+                data-aos="fade-left"
                 src="/assets/images/cta-image.png"
                 alt="Schedule a consultation"
                 width={480}
@@ -172,7 +188,7 @@ export default function CTASection() {
             }`}
           >
             <div className="overflow-hidden">
-              <div className="bg-white rounded-2xl  p-8 md:p-10">
+              <div className="bg-white rounded-2xl  p-4 md:p-8 md:p-10">
                 <h3 className="text-md font-bold text-slate-800 mb-8">
                   Please tell us more and we will reach out to you shortly.
                 </h3>

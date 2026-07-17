@@ -1,18 +1,12 @@
 import type { NextConfig } from "next";
 
-const isStaticExport = process.env.STATIC_EXPORT === "true";
-
 const nextConfig: NextConfig = {
-  // Static export mode for GCS deployment (STATIC_EXPORT=true yarn build)
-  // Server mode for `yarn start` (default, no env var needed)
-  output: isStaticExport ? "export" : undefined,
-  turbopack: {
-    root: process.cwd(),
-  },
+  output: "export",
+  basePath: process.env.NODE_ENV === "production" ? "/maptheway-website" : "",
   images: {
-    unoptimized: isStaticExport,
+    unoptimized: true,
   },
-  trailingSlash: isStaticExport,
+  trailingSlash: true,
   typescript: {
     ignoreBuildErrors: false,
   },

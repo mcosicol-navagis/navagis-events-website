@@ -45,9 +45,25 @@ const charVariants: Variants = {
   exit: { opacity: 0, transition: { duration: 0.03 } },
 };
 
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default function QuestionFlipSection() {
+  const [questions, setQuestions] = useState(QUESTIONS);
+
+  useEffect(() => {
+    setQuestions(shuffle(QUESTIONS));
+  }, []);
   const [index, setIndex] = useState(0);
-  const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
+  const [containerWidth, setContainerWidth] = useState<number | undefined>(
+    undefined,
+  );
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const ghostRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -60,12 +76,12 @@ export default function QuestionFlipSection() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Measure initial width
+  // Re-measure whenever questions array changes (initial load + after shuffle)
   useEffect(() => {
     if (ghostRefs.current[0]) {
       setContainerWidth(ghostRefs.current[0].offsetWidth);
     }
-  }, []);
+  }, [questions]);
 
   // Start cycling only when section is in view
   useEffect(() => {
@@ -81,7 +97,7 @@ export default function QuestionFlipSection() {
     if (!isVisible) return;
     const timer = setInterval(() => {
       setIndex((prev) => {
-        const next = (prev + 1) % QUESTIONS.length;
+        const next = (prev + 1) % questions.length;
         if (ghostRefs.current[next]) {
           setContainerWidth(ghostRefs.current[next]!.offsetWidth);
         }
@@ -113,9 +129,9 @@ export default function QuestionFlipSection() {
                 animate="visible"
                 exit="exit"
                 style={{ display: "inline-block" }}
-                className="text-xl sm:text-2xl font-bold text-[#1B1B1C]"
+                className="text-xl sm:text-2xl text-center lg:text-left font-bold text-[#1B1B1C]"
               >
-                {QUESTIONS[index]
+                {questions[index]
                   .split(" ")
                   .filter(Boolean)
                   .map((word, wordIdx, words) => (
@@ -154,7 +170,7 @@ export default function QuestionFlipSection() {
               whiteSpace: "nowrap",
             }}
           >
-            {QUESTIONS.map((q, i) => (
+            {questions.map((q, i) => (
               <span
                 key={i}
                 ref={(el) => {

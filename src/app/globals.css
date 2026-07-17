@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+.grecaptcha-badge .rc-anchor-content {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 @theme {
   --color-navy: #1e3a6e;
   --color-navy-dark: #152a52;

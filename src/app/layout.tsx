@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import AOSProvider from "@/components/AOSProvider";
+
+const RECAPTCHA_SITE_KEY = "6Leu1FctAAAAAP47TDcdb6THKR8nN-lrfXR8-hjn";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,6 +34,10 @@ export default function RootLayout({
       <body className={`${inter.variable} ${plusJakarta.variable} overflow-x-hidden`}>
         <AOSProvider />
         <main>{children}</main>
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

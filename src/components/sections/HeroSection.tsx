@@ -10,7 +10,7 @@ export default function HeroSection() {
         <div
           data-aos="fade-right"
           data-aos-delay="200"
-          className="flex items-center gap-2 mb-8"
+          className="flex mx-auto lg:mx-0 items-center gap-2 mb-8"
         >
           <Image
             src="/assets/images/gmp.png"
@@ -25,7 +25,7 @@ export default function HeroSection() {
         <h1
           data-aos="fade-right"
           data-aos-delay="600"
-          className="text-4xl md:text-7xl font-bold text-slate-900 leading-none mb-4"
+          className="text-4xl md:text-7xl text-center lg:text-left font-bold text-slate-900 leading-none mb-4"
         >
           Map the Way
           <br />
@@ -36,7 +36,7 @@ export default function HeroSection() {
         <p
           data-aos="fade-right"
           data-aos-delay="800"
-          className="text-xl font-semibold text-slate-700 mb-10"
+          className="text-xl text-center max-w-lg mx-auto lg:mx-0 lg:text-left font-semibold text-slate-700 mb-10"
         >
           Discover what's next for your business with AI-powered location
           intelligence.
@@ -46,7 +46,7 @@ export default function HeroSection() {
         <div
           data-aos="fade-right"
           data-aos-delay="1000"
-          className=" border border-slate-200 rounded-2xl p-4 sm:p-6 max-w-md divide-y divide-slate-100 bg-white/60 backdrop-blur-sm"
+          className=" border mx-auto lg:mx-0   border-slate-200 rounded-2xl p-4 sm:p-6 max-w-md divide-y divide-slate-100 bg-white/60 backdrop-blur-sm"
         >
           {/* Date & Time */}
           <div className="flex items-start gap-4 pb-5">
@@ -60,8 +60,12 @@ export default function HeroSection() {
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
                 Date &amp; Time
               </p>
-              <p className="font-bold text-slate-800">September 24th, 2026</p>
-              <p className="text-slate-500 text-sm">12:00 PM to 3:30 PM CDT</p>
+              <p className="font-bold text-slate-800">
+                Wednesday, September September 24th, 2026
+              </p>
+              <p className="text-slate-500 text-sm">
+                12:00 PM to 3:30 PM CDT - Lunch Included
+              </p>
             </div>
           </div>
 

@@ -5,6 +5,21 @@ import { Icon } from "@iconify/react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
+const RECAPTCHA_SITE_KEY = "6Leu1FctAAAAAP47TDcdb6THKR8nN-lrfXR8-hjn";
+
+function getRecaptchaToken(action: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).grecaptcha.ready(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).grecaptcha
+        .execute(RECAPTCHA_SITE_KEY, { action })
+        .then(resolve)
+        .catch(reject);
+    });
+  });
+}
+
 const INTEREST_OPTIONS = [
   "Retail & Site Selection",
   "Logistics & Fulfillment",
@@ -19,7 +34,7 @@ const INTEREST_OPTIONS = [
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function RegisterForm() {
-  const [wantsTour, setWantsTour] = useState(true);
+  const [wantsTour, setWantsTour] = useState(false);
   const [interests, setInterests] = useState<string[]>([]);
   const [interestsOpen, setInterestsOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -57,14 +72,15 @@ export default function RegisterForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
 
     try {
+      const recaptchaToken = await getRecaptchaToken("register");
+
       const scriptUrl =
         "https://script.google.com/macros/s/AKfycbz57TegFsjdlpMf0_s14dydcvNR9bNQTPPahY2IlB512__B8dpVSD-dneDW4RPDF0Ze/exec";
-      if (!scriptUrl) throw new Error("NEXT_PUBLIC_SCRIPT_URL is not set.");
 
       await fetch(scriptUrl, {
         method: "POST",
@@ -75,6 +91,7 @@ export default function RegisterForm() {
           ...form,
           interests: interests.join(", "),
           wantsTour,
+          recaptchaToken,
         }),
       });
 
@@ -100,7 +117,7 @@ export default function RegisterForm() {
       : interests.join(", ");
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 ">
+    <div className="bg-white  rounded-2xl shadow-lg p-8 md:p-10 ">
       {/* Decorative blue glow blob */}
       <div
         className="absolute bottom-[20px] -z-10 -right-[600px] w-[1500px] h-[350px] rounded-full pointer-events-none"
@@ -260,7 +277,7 @@ export default function RegisterForm() {
           </button>
 
           {interestsOpen && (
-            <div className="absolute z-10 top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden">
+            <div className="absolute z-30 top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-y-auto max-h-60">
               {INTEREST_OPTIONS.map((opt) => (
                 <button
                   key={opt}
@@ -293,7 +310,7 @@ export default function RegisterForm() {
             role="checkbox"
             aria-checked={wantsTour}
             onClick={() => setWantsTour((v) => !v)}
-            className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+            className={`w-5 h-5 rounded flex hover:border-2 hover:border-blue-400 items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
               wantsTour ? "bg-[#0058BD]" : "border-2 border-slate-300 bg-white"
             }`}
           >
@@ -301,7 +318,7 @@ export default function RegisterForm() {
               <Icon icon="mdi:check" className="text-white text-xs" />
             )}
           </button>
-          <span className="text-sm text-slate-700">
+          <span className="text-sm pt-[2px] text-slate-700">
             I would like a tour of the Google Chicago office
           </span>
         </div>

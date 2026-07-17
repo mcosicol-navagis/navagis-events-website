@@ -19,13 +19,13 @@ export default function AboutSection() {
         <div className="">
           <h2
             data-aos="fade-right"
-            className="text-4xl md:text-5xl  font-bold text-slate-900 leading-tight mb-6"
+            className="text-4xl md:text-5xl text-center lg:text-left font-bold text-slate-900 leading-tight mb-6"
           >
             Stop Guessing. <br /> Start Predicting <br /> & Grow.
           </h2>
           <p
             data-aos="fade-right"
-            className="text-[#1B1B1C] md:max-w-[80%] text-xl leading-relaxed"
+            className="text-[#1B1B1C] md:max-w-[80%] text-center mx-auto lg:mx-0 lg:text-left text-xl leading-relaxed"
           >
             Join Google Maps Platform and Navagis for an exclusive, in-person
             event to move beyond descriptive analytics and static spreadsheets.

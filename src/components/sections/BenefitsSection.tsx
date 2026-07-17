@@ -131,47 +131,46 @@ function Card({
 
   return (
     <div data-aos="fade-up">
-    <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{
-        rotateX: tilt.x,
-        rotateY: tilt.y,
-        scale: tilt.x !== 0 || tilt.y !== 0 ? 1.02 : 1,
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.5 }}
-      style={{ transformStyle: "preserve-3d", willChange: "transform" }}
-      className="relative overflow-hidden border border-gray-200 rounded-2xl px-10 py-10 cursor-default"
-    >
-      <div
-        data-aos="fade-up"
-        className="absolute -z-10 top-[20px] -left-[200px] w-[700px] h-[350px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, #bdd8f0 0%, #f2f6f8 55%, transparent 70%)",
-          filter: "blur(40px)",
-          opacity: "20%",
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        animate={{
+          rotateX: tilt.x,
+          rotateY: tilt.y,
+          scale: tilt.x !== 0 || tilt.y !== 0 ? 1 : 0.98,
         }}
-      />
-      <div
-        className={`w-12 h-12 rounded-xl ${iconBg} flex items-center justify-center mb-5`}
+        transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.5 }}
+        className="relative   overflow-hidden border border-gray-200 rounded-2xl px-10 py-10 cursor-default"
       >
-        <Icon icon={icon} className={`${iconColor} text-3xl`} />
-      </div>
-      <h3
-        data-aos="fade-right"
-        className="text-3xl font-bold text-slate-900 mb-3"
-      >
-        {title}
-      </h3>
-      <p
-        data-aos="fade-right"
-        className="text-[#424753] leading-relaxed text-md"
-      >
-        {body}
-      </p>
-    </motion.div>
+        <div
+          data-aos="fade-up"
+          className="absolute -z-10 top-[20px] -left-[200px] w-[700px] h-[350px] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, #bdd8f0 0%, #f2f6f8 55%, transparent 70%)",
+            filter: "blur(40px)",
+            opacity: "20%",
+          }}
+        />
+        <div
+          className={`w-12 h-12 rounded-xl ${iconBg} mx-auto lg:mx-0 flex items-center justify-center mb-5`}
+        >
+          <Icon icon={icon} className={`${iconColor}  text-3xl`} />
+        </div>
+        <h3
+          data-aos="fade-right"
+          className="text-3xl font-bold  text-center lg:text-left text-slate-900 mb-3"
+        >
+          {title}
+        </h3>
+        <p
+          data-aos="fade-right"
+          className="text-[#424753]  text-center lg:text-left leading-relaxed text-md"
+        >
+          {body}
+        </p>
+      </motion.div>
     </div>
   );
 }
