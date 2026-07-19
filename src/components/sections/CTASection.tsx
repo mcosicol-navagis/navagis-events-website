@@ -65,14 +65,16 @@ export default function CTASection() {
       const recaptchaToken = await getRecaptchaToken("connect");
 
       const scriptUrl =
-        "https://script.google.com/macros/s/AKfycbz57TegFsjdlpMf0_s14dydcvNR9bNQTPPahY2IlB512__B8dpVSD-dneDW4RPDF0Ze/exec";
+        "https://script.google.com/macros/s/AKfycbw7DWeCpeX2Nt9T2vPxgkxb9RwFwjAgi-74A4A7Zu1c2KJodGuBmmvjdr-xQmA8ooe9bA/exec";
 
-      await fetch(scriptUrl, {
+      const response = await fetch(scriptUrl, {
         method: "POST",
-        mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({ type: "connect", ...form, recaptchaToken }),
       });
+
+      const result = await response.json();
+      if (result.result !== "success") throw new Error(result.error);
 
       setStatus("success");
       setCountdown(10);
@@ -261,9 +263,13 @@ export default function CTASection() {
                   </div>
 
                   {status === "error" && (
-                    <p className="text-sm text-red-500 text-center">
-                      Something went wrong. Please try again.
-                    </p>
+                    <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                      <Icon icon="mdi:alert-circle" className="text-red-500 text-xl flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-sm font-semibold text-red-700">Submission failed</p>
+                        <p className="text-sm text-red-600">Something went wrong. Please try again or email us at <a href="mailto:contact@navagis.com" className="underline font-medium">contact@navagis.com</a>.</p>
+                      </div>
+                    </div>
                   )}
 
                   <button

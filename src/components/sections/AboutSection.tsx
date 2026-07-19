@@ -3,7 +3,7 @@ export default function AboutSection() {
     <section className="py-12 px-4 sm:px-6 md:py-20">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Video */}
-        <div className="w-full rounded-3xl overflow-hidden shadow-lg">
+        <div className="w-full rounded-3xl shadow-lg">
           <video
             src="/assets/videos/event2.mp4"
             autoPlay
