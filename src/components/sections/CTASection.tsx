@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
+import { useUtmTracker } from "@/hooks/useUtmTracker";
 
 const RECAPTCHA_SITE_KEY = "6Leu1FctAAAAAP47TDcdb6THKR8nN-lrfXR8-hjn";
 
@@ -29,6 +30,7 @@ const EMPTY_FORM = {
 };
 
 export default function CTASection() {
+  const utms = useUtmTracker();
   const [showForm, setShowForm] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [countdown, setCountdown] = useState(10);
@@ -70,7 +72,12 @@ export default function CTASection() {
       const response = await fetch(scriptUrl, {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ type: "connect", ...form, recaptchaToken }),
+        body: JSON.stringify({
+          type: "connect",
+          ...form,
+          recaptchaToken,
+          ...utms,
+        }),
       });
 
       const result = await response.json();
@@ -264,10 +271,24 @@ export default function CTASection() {
 
                   {status === "error" && (
                     <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
-                      <Icon icon="mdi:alert-circle" className="text-red-500 text-xl flex-shrink-0 mt-0.5" />
+                      <Icon
+                        icon="mdi:alert-circle"
+                        className="text-red-500 text-xl flex-shrink-0 mt-0.5"
+                      />
                       <div>
-                        <p className="text-sm font-semibold text-red-700">Submission failed</p>
-                        <p className="text-sm text-red-600">Something went wrong. Please try again or email us at <a href="mailto:contact@navagis.com" className="underline font-medium">contact@navagis.com</a>.</p>
+                        <p className="text-sm font-semibold text-red-700">
+                          Submission failed
+                        </p>
+                        <p className="text-sm text-red-600">
+                          Something went wrong. Please try again or email us at{" "}
+                          <a
+                            href="mailto:contact@navagis.com"
+                            className="underline font-medium"
+                          >
+                            contact@navagis.com
+                          </a>
+                          .
+                        </p>
                       </div>
                     </div>
                   )}

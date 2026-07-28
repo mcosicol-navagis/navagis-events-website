@@ -38,7 +38,8 @@ export default function HeroSection() {
           data-aos-delay="800"
           className="text-xl text-center max-w-lg mx-auto lg:mx-0 lg:text-left font-semibold text-slate-700 mb-10"
         >
-          Discover what's next for your business with AI-powered location
+          Discover what's next for your business{" "}
+          <br className="hidden lg:block" /> with AI-powered location
           intelligence.
         </p>
 
@@ -61,7 +62,7 @@ export default function HeroSection() {
                 Date &amp; Time
               </p>
               <p className="font-bold text-slate-800">
-                Wednesday, September September 24th, 2026
+                Wednesday, September 23rd, 2026
               </p>
               <p className="text-slate-500 text-sm">
                 12:00 PM to 3:30 PM CDT - Lunch Included

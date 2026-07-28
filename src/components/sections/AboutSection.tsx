@@ -27,12 +27,19 @@ export default function AboutSection() {
             data-aos="fade-right"
             className="text-[#1B1B1C] md:max-w-[80%] text-center mx-auto lg:mx-0 lg:text-left text-xl leading-relaxed"
           >
-            Join Google Maps Platform and Navagis for an exclusive, in-person
-            event to move beyond descriptive analytics and static spreadsheets.
-            Discover how to bridge the gap between historical data and future
-            trends by visually mapping your real-world context and applying
-            AI-powered location intelligence directly to your industry's biggest
-            challenges.
+            Join Google Maps Platform and{" "}
+            <a
+              href="https://navagis.com/"
+              target="_blank"
+              className="underline hover:text-blue-500 font-medium"
+            >
+              Navagis
+            </a>{" "}
+            for an exclusive, in-person event to move beyond descriptive
+            analytics and static spreadsheets. Discover how to bridge the gap
+            between historical data and future trends by visually mapping your
+            real-world context and applying AI-powered location intelligence
+            directly to your industry's biggest challenges.
           </p>
         </div>
       </div>

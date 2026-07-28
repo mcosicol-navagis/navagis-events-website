@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { useUtmTracker } from "@/hooks/useUtmTracker";
 
 const RECAPTCHA_SITE_KEY = "6Leu1FctAAAAAP47TDcdb6THKR8nN-lrfXR8-hjn";
 
@@ -34,6 +35,7 @@ const INTEREST_OPTIONS = [
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function RegisterForm() {
+  const utms = useUtmTracker();
   const [wantsTour, setWantsTour] = useState(false);
   const [interests, setInterests] = useState<string[]>([]);
   const [interestsOpen, setInterestsOpen] = useState(false);
@@ -91,6 +93,7 @@ export default function RegisterForm() {
           interests: interests.join(", "),
           wantsTour,
           recaptchaToken,
+          ...utms,
         }),
       });
 
@@ -107,7 +110,7 @@ export default function RegisterForm() {
         phone: "",
       });
       setInterests([]);
-      setWantsTour(true);
+      setWantsTour(false);
     } catch {
       setStatus("error");
     }
@@ -119,7 +122,10 @@ export default function RegisterForm() {
       : interests.join(", ");
 
   return (
-    <div className="bg-white  rounded-2xl shadow-lg p-8 md:p-10 ">
+    <div
+      className="bg-white rounded-2xl p-8 md:p-10"
+      style={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+    >
       {/* Decorative blue glow blob */}
       <div
         className="absolute bottom-[20px] -z-10 -right-[600px] w-[1500px] h-[350px] rounded-full pointer-events-none"
@@ -328,10 +334,24 @@ export default function RegisterForm() {
         {/* Error message */}
         {status === "error" && (
           <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
-            <Icon icon="mdi:alert-circle" className="text-red-500 text-xl flex-shrink-0 mt-0.5" />
+            <Icon
+              icon="mdi:alert-circle"
+              className="text-red-500 text-xl flex-shrink-0 mt-0.5"
+            />
             <div>
-              <p className="text-sm font-semibold text-red-700">Submission failed</p>
-              <p className="text-sm text-red-600">Something went wrong. Please try again or email us at <a href="mailto:contact@navagis.com" className="underline font-medium">contact@navagis.com</a>.</p>
+              <p className="text-sm font-semibold text-red-700">
+                Submission failed
+              </p>
+              <p className="text-sm text-red-600">
+                Something went wrong. Please try again or email us at{" "}
+                <a
+                  href="mailto:contact@navagis.com"
+                  className="underline font-medium"
+                >
+                  contact@navagis.com
+                </a>
+                .
+              </p>
             </div>
           </div>
         )}
@@ -348,11 +368,21 @@ export default function RegisterForm() {
         {/* reCAPTCHA notice */}
         <p className="text-center text-xs text-slate-400">
           Protected by reCAPTCHA —{" "}
-          <a href="#" className="underline hover:text-slate-600">
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-slate-600"
+          >
             Privacy Policy
           </a>{" "}
           &{" "}
-          <a href="#" className="underline hover:text-slate-600">
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-slate-600"
+          >
             Terms of Service
           </a>
         </p>

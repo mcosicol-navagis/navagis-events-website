@@ -19,9 +19,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Map The Way to Chicago",
+  title: "Map the Way Chicago │ Google Maps Platform",
   description:
-    "Join us at the NAVAGIS event. Register to attend in person or virtually and discover how NavaFleet and Google Cloud can transform your fleet operations.",
+    "Join the Google Maps Platform team and Navagis at the Google Chicago office for an exclusive, in-person event to discover how location intelligence and AI can solve your industry's biggest challenges.",
 };
 
 export default function RootLayout({
@@ -31,13 +31,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${plusJakarta.variable} overflow-x-hidden`}>
+      <body
+        className={`${inter.variable} ${plusJakarta.variable} overflow-x-hidden`}
+      >
         <AOSProvider />
         <main>{children}</main>
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
           strategy="afterInteractive"
         />
+        <Script id="apollo-tracker" strategy="afterInteractive">{`
+          function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+          o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+          o.onload=function(){window.trackingFunctions.onLoad({appId:"66312f4d059c3f0574ac8452"})},
+          document.head.appendChild(o)}initApollo();
+        `}</Script>
       </body>
     </html>
   );
